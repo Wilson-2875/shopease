@@ -4,6 +4,9 @@ import { env } from './env.js';
 export const pool = mysql.createPool({
   host: env.db.host,
   port: env.db.port,
+
+  ssl: { rejectUnauthorized: false },
+  
   user: env.db.user,
   password: env.db.password,
   database: env.db.database,
@@ -12,6 +15,8 @@ export const pool = mysql.createPool({
   charset: 'utf8mb4',
   decimalNumbers: true, // DECIMAL columns come back as numbers, not strings
   timezone: 'Z',
+
+
 });
 
 // Keep every connection in UTC so dates are consistent; the browser formats them in local time.
