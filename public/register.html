@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create account</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="app-header"></div>
+  <main class="container" id="main">
+    <div class="auth-box panel">
+      <h1>Create your account</h1>
+      <form id="register-form" novalidate>
+        <div class="field"><label for="name">Full name</label><input id="name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="phone">Phone (optional)</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
+        <div class="field"><label for="password">Password</label><input id="password" name="password" type="password" autocomplete="new-password" required><span class="muted small">At least 8 characters, with a letter and a number.</span></div>
+        <p class="form-error" id="error" role="alert"></p>
+        <button class="btn btn-block" type="submit">Create account</button>
+      </form>
+      <p class="muted" style="margin-top:14px">Already registered? <a href="/login.html" id="to-login">Sign in</a></p>
+    </div>
+  </main>
+  <div id="app-footer"></div>
+  <script type="module" src="/js/auth.js"></script>
+</body>
+</html>

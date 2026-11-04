@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="app-header"></div>
+  <main class="container" id="main">
+    <section class="hero">
+      <div><h1>Everyday essentials, delivered.</h1><p>Clothing, footwear, kitchen and home goods at prices that stay friendly.</p></div>
+      <a class="btn" style="background:#f0b429;border-color:#f0b429;color:#2b2100" href="/?onSale=1">Shop deals</a>
+    </section>
+    <div id="recommended"></div>
+    <div class="shop-layout">
+      <details class="filters" id="filters" open>
+        <summary>Filters</summary>
+        <form id="filter-form">
+          <div class="field"><label for="f-category">Category</label><select id="f-category" name="category"><option value="">All categories</option></select></div>
+          <div class="field"><label>Price</label><div class="price-pair"><input name="minPrice" type="number" min="0" step="1" placeholder="Min" aria-label="Minimum price"><input name="maxPrice" type="number" min="0" step="1" placeholder="Max" aria-label="Maximum price"></div></div>
+          <fieldset style="border:0;padding:0;margin:12px 0 0"><legend style="font-weight:600;font-size:.9rem;padding:0">Brand</legend><div id="f-brands"></div></fieldset>
+          <div class="field"><label for="f-rating">Rating</label><select id="f-rating" name="minRating"><option value="">Any rating</option><option value="4">4 stars &amp; up</option><option value="3">3 stars &amp; up</option><option value="2">2 stars &amp; up</option></select></div>
+          <label class="check"><input type="checkbox" name="inStock" value="1"> In stock only</label>
+          <label class="check"><input type="checkbox" name="onSale" value="1"> On sale</label>
+          <div class="row" style="margin-top:14px"><button class="btn btn-sm" type="submit">Apply</button><button class="btn btn-sm btn-outline" type="button" id="reset">Reset</button></div>
+        </form>
+      </details>
+      <section aria-live="polite">
+        <div class="toolbar">
+          <h2 id="results-title" style="margin:0">All products</h2>
+          <div class="row"><span class="muted small" id="count"></span>
+            <label class="sr-only" for="sort">Sort by</label>
+            <select id="sort"><option value="featured">Featured</option><option value="newest">Newest</option><option value="price_asc">Price: low to high</option><option value="price_desc">Price: high to low</option><option value="rating">Top rated</option><option value="discount">Biggest discount</option></select></div>
+        </div>
+        <div class="grid-products" id="grid"></div>
+        <div class="pagination" id="pagination"></div>
+      </section>
+    </div>
+  </main>
+  <div id="app-footer"></div>
+  <script type="module" src="/js/home.js"></script>
+</body>
+</html>

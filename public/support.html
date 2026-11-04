@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="app-header"></div>
+  <main class="container" id="main">
+    <h1>How can we help?</h1>
+    <div class="shop-layout" style="grid-template-columns:1fr 1fr">
+      <section class="panel">
+        <h2>Send us a message</h2>
+        <form id="support-form" novalidate>
+          <div class="field"><label for="s-name">Your name</label><input id="s-name" name="name" required></div>
+          <div class="field"><label for="s-email">Email</label><input id="s-email" name="email" type="email" required></div>
+          <div class="field"><label for="s-subject">Subject</label><input id="s-subject" name="subject" required></div>
+          <div class="field"><label for="s-message">Message</label><textarea id="s-message" name="message" required></textarea></div>
+          <p class="form-error" id="error" role="alert"></p>
+          <button class="btn" type="submit">Send message</button>
+        </form>
+        <div id="contact-info" class="muted small" style="margin-top:14px"></div>
+      </section>
+      <section class="panel">
+        <h2>Frequently asked questions</h2>
+        <div id="faq"></div>
+      </section>
+    </div>
+  </main>
+  <div id="app-footer"></div>
+  <script type="module" src="/js/support.js"></script>
+</body>
+</html>

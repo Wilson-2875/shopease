@@ -1,0 +1,64 @@
+-- Sample data adapted from the original cart project (products.js, deliveryOptions.js).
+-- INSERT IGNORE + fixed ids make this file safe to run again.
+USE shopease;
+
+INSERT IGNORE INTO categories (id, parent_id, name, slug) VALUES
+  (1, NULL, 'Clothing', 'clothing'),
+  (2, 1, 'Men''s Clothing', 'mens-clothing'),
+  (3, 1, 'Women''s Clothing', 'womens-clothing'),
+  (4, NULL, 'Footwear', 'footwear'),
+  (5, NULL, 'Home & Kitchen', 'home-kitchen'),
+  (6, 5, 'Kitchen', 'kitchen'),
+  (7, 5, 'Bathroom', 'bathroom'),
+  (8, 5, 'Bedroom', 'bedroom'),
+  (9, NULL, 'Accessories', 'accessories'),
+  (10, NULL, 'Household Essentials', 'household-essentials'),
+  (11, NULL, 'Sports & Fitness', 'sports-fitness');
+
+INSERT IGNORE INTO delivery_options (id, name, days, price) VALUES
+  (1, 'Standard', 7, 0),
+  (2, 'Express', 3, 125),
+  (3, 'Next-day', 1, 295);
+
+INSERT IGNORE INTO coupons (id, code, type, value, min_order, max_uses, expires_at, is_active) VALUES
+  (1, 'WELCOME10', 'percent', 10, 1000, NULL, NULL, 1),
+  (2, 'SAVE200', 'fixed', 200, 2000, 500, NULL, 1);
+
+-- Brands below are placeholders so the brand filter has something to show. Edit them in the admin panel.
+-- Ratings are only seeded where the original data had a valid 0-5 value; real reviews recalculate them.
+INSERT IGNORE INTO products
+  (id, category_id, name, description, brand, keywords, price, previous_price, image, stock, rating_avg, rating_count) VALUES
+  (1, 1, 'Black and Gray Athletic Cotton Socks - 6 Pairs', 'Breathable cotton-blend socks with cushioned soles. Six pairs per pack.', 'Everyday Basics', 'socks,athletic,apparel', 1500, 3000, 'images/products/athletic-cotton-socks-6-pairs.jpg', 120, 4.5, 87),
+  (2, 11, 'Intermediate Size Basketball', 'Durable composite-leather basketball sized for training and casual play.', 'SportsPro', 'basketball,sports,ball', 2095, 2500, 'images/products/intermediate-composite-basketball.jpg', 40, 4.0, 127),
+  (3, 1, 'Adults Plain Cotton T-Shirt - 2 Pack', 'Soft everyday crew-neck tees, two to a pack.', 'Everyday Basics', 'tshirt,apparel,cotton', 800, 1200, 'images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg', 200, 4.5, 100),
+  (4, 6, '2 Slot Toaster - Black', 'Two-slot toaster with browning control and a removable crumb tray.', 'HomeNest', 'appliances,kitchen,toaster', 1800, 3200, 'images/products/black-2-slot-toaster.jpg', 35, 0, 0),
+  (5, 6, '6 Piece White Dinner Plate Set', 'Classic white porcelain dinner plates, dishwasher safe.', 'HomeNest', 'plates,dishes,kitchen', 2300, 3000, 'images/products/6-piece-white-dinner-plate-set.jpg', 60, 0, 0),
+  (6, 6, '6-Piece Nonstick, Carbon Steel Oven Bakeware Baking Set', 'Carbon steel pans with a nonstick coating for even baking.', 'HomeNest', 'baking,oven,kitchen', 3600, 4200, 'images/products/6-piece-non-stick-baking-set.webp', 25, 0, 0),
+  (7, 1, 'Plain Hooded Fleece Sweatshirt', 'Warm fleece-lined hoodie with a kangaroo pocket.', 'Everyday Basics', 'hoodie,sweatshirt,apparel', 2400, 2800, 'images/products/plain-hooded-fleece-sweatshirt-yellow.jpg', 3, 0, 0),
+  (8, 7, 'Luxury Towel Set - Graphite Gray', 'Six-piece set of plush, absorbent cotton towels.', 'HomeNest', 'bathroom,washroom,restroom,towels,bath towels', 3599, 5500, 'images/products/luxury-tower-set-6-piece.jpg', 45, 0, 0),
+  (9, 10, 'Liquid Laundry Detergent, 110 Loads, 82.5 Fl Oz', 'Concentrated liquid detergent that cleans in cold or warm water.', 'CleanWorks', 'bathroom,cleaning,laundry', 2899, 3259, 'images/products/liquid-laundry-detergent-plain.jpg', 80, 4.5, 305),
+  (10, 4, 'Waterproof Knit Athletic Sneakers - Gray', 'Lightweight, water-resistant knit sneakers for everyday wear.', 'SportsPro', 'shoes,running shoes,footwear', 4000, 5299, 'images/products/knit-athletic-sneakers-gray.jpg', 30, 4.5, 305),
+  (11, 3, 'Women''s Chiffon Beachwear Cover Up - Black', 'Light chiffon cover-up for the beach or poolside.', 'Everyday Basics', 'robe,swimsuit,swimming,bathing,apparel', 2840, 3499, 'images/products/women-chiffon-beachwear-coverup-black.jpg', 22, 0, 0),
+  (12, 9, 'Round Sunglasses', 'Classic round frames with UV400 lenses.', 'Sunnies', 'accessories,shades', 1560, 1999, 'images/products/round-sunglasses-black.jpg', 50, 0, 0),
+  (13, 4, 'Women''s Two Strap Buckle Sandals - Tan', 'Comfortable two-strap sandals with adjustable buckles.', 'Everyday Basics', 'footwear,sandals,womens,beach,summer', 2499, 3999, 'images/products/women-beach-sandals.jpg', 28, 4.5, 562),
+  (14, 8, 'Blackout Curtains Set 4-Pack - Beige', 'Four thermal blackout panels that block light and soften noise.', 'HomeNest', 'bedroom,curtains,home', 4599, 5999, 'images/products/blackout-curtain-set-beige.webp', 18, 4.5, 232),
+  (15, 2, 'Men''s Slim-Fit Summer Shorts', 'Stretch-cotton slim-fit shorts for warm days.', 'Everyday Basics', 'shorts,apparel,mens', 1699, 1999, 'images/products/men-slim-fit-summer-shorts-gray.jpg', 55, 4.5, 232),
+  (16, 6, 'Electric Glass and Steel Hot Tea Water Kettle - 1.7-Liter', 'Glass-body electric kettle with auto shut-off and boil-dry protection.', 'HomeNest', 'water boiler,appliances,kitchen', 3074, 4999, 'images/products/electric-glass-and-steel-hot-water-kettle.webp', 2, 5, 845),
+  (17, 10, 'Ultra Soft Tissue 2-Ply - 18 Box', 'Soft two-ply facial tissues, 18 boxes.', 'CleanWorks', 'kleenex,tissues,kitchen,tissues box,napkins', 2440, 2700, 'images/products/facial-tissue-2-ply-18-boxes.jpg', 90, 0, 0),
+  (18, 9, 'Straw Lifeguard Sun Hat', 'Wide-brim woven straw hat for sun protection.', 'Sunnies', 'hats,straw hats,summer,apparel', 2500, 2999, 'images/products/straw-sunhat.webp', 33, 2, 323),
+  (19, 2, 'Men''s Classic-fit Pleated Chino Pants', 'Pleated chinos with a relaxed classic fit.', 'Everyday Basics', 'pants,apparel,mens', 2290, 2999, 'images/products/men-chino-pants-beige.jpg', 40, 0, 0),
+  (20, 4, 'Men''s Athletic Sneaker', 'Cushioned everyday athletic sneaker.', 'SportsPro', 'shoes,running shoes,footwear,mens', 4599, 6999, 'images/products/men-athletic-shoes-green.jpg', 26, 0, 0),
+  (21, 9, 'Men''s Navigator Sunglasses Pilot', 'Pilot-style navigator sunglasses with UV protection.', 'Sunnies', 'sunglasses,glasses,accessories,shades', 1690, 1899, 'images/products/men-navigator-sunglasses-brown.jpg', 44, 0, 0),
+  (22, 6, 'Non-Stick Cookware Set, Pots, Pans and Utensils - 15 Pieces', 'Fifteen-piece non-stick set with pots, pans and utensils.', 'HomeNest', 'cooking set,kitchen', 6789, 9999, 'images/products/non-stick-cooking-set-15-pieces.webp', 15, 0, 0),
+  (23, 7, 'Vanity Mirror with Heavy Base - Chrome', 'Chrome vanity mirror with a weighted, stable base.', 'HomeNest', 'bathroom,washroom,mirrors,home', 1649, 1999, 'images/products/vanity-mirror-silver.jpg', 38, 0, 0),
+  (24, 3, 'Women''s Fleece Jogger Sweatpant', 'Soft french-terry fleece joggers with a tapered leg.', 'Everyday Basics', 'pants,sweatpants,jogging,apparel,womens', 2400, 2999, 'images/products/women-french-terry-fleece-jogger-camo.jpg', 36, 0, 0),
+  (25, 9, 'Double Oval Twist French Wire Earrings - Gold', 'Gold-tone twisted double-oval French wire earrings.', 'Sunnies', 'accessories,womens', 2400, 2999, 'images/products/double-elongated-twist-french-wire-earrings.webp', 60, 0, 0),
+  (26, 6, 'Round Airtight Food Storage Containers - 5 Piece', 'Five airtight round containers with snap-on lids.', 'HomeNest', 'boxes,food containers,kitchen', 2899, 3999, 'images/products/round-airtight-food-storage-containers.jpg', 70, 0, 0),
+  (27, 6, 'Coffeemaker with Glass Carafe and Reusable Filter - 25 Oz, Black', 'Compact coffeemaker with a glass carafe and reusable filter.', 'HomeNest', 'coffeemakers,kitchen,appliances', 2250, 3599, 'images/products/coffeemaker-with-glass-carafe-black.jpg', 4, 0, 0),
+  (28, 8, 'Blackout Curtains Set 42 x 84-Inch - Black, 2 Panels', 'Two 42 x 84-inch blackout panels.', 'HomeNest', 'bedroom,home', 3099, 3599, 'images/products/blackout-curtains-black.jpg', 29, 0, 0),
+  (29, 7, '100% Cotton Bath Towels - 2 Pack, Light Teal', 'Two absorbent 100% cotton bath towels.', 'HomeNest', 'bathroom,home,towels', 2110, 2599, 'images/products/cotton-bath-towels-teal.webp', 52, 0, 0),
+  (30, 4, 'Waterproof Knit Athletic Sneakers - Pink', 'Lightweight, water-resistant knit sneakers in pink.', 'SportsPro', 'shoes,running shoes,footwear,womens', 3399, 3999, 'images/products/knit-athletic-sneakers-pink.webp', 24, 0, 0),
+  (31, 6, 'Countertop Blender - 64oz, 1400 Watts', 'Powerful 1400-watt blender with a 64oz jar.', 'HomeNest', 'food blenders,kitchen,appliances', 10747, 15000, 'images/products/countertop-blender-64-oz.jpg', 12, 4, 29),
+  (32, 6, '10-Piece Mixing Bowl Set with Lids - Floral', 'Ten nesting mixing bowls with lids.', 'HomeNest', 'mixing bowls,baking,cookware,kitchen', 3899, 4599, 'images/products/floral-mixing-bowl-set.jpg', 31, 0, 0),
+  (33, 10, '2-Ply Kitchen Paper Towels - 30 Pack', 'Absorbent two-ply paper towels, 30 rolls.', 'CleanWorks', 'kitchen,kitchen towels,tissues', 5799, 7599, 'images/products/kitchen-paper-towels-30-pack.jpg', 65, 0, 0),
+  (34, 2, 'Men''s Full-Zip Hooded Fleece Sweatshirt', 'Cozy full-zip fleece hoodie.', 'Everyday Basics', 'sweaters,hoodies,apparel,mens', 2400, 3599, 'images/products/men-cozy-fleece-zip-up-hoodie-red.jpg', 41, 0, 0);
