@@ -175,6 +175,14 @@ function renderChat() {
       <div class="chat-log" id="chat-log" aria-live="polite"><div class="msg">Hi! Ask about delivery, payment, returns or tracking.</div></div>
       <form id="chat-form"><label class="sr-only" for="chat-input">Your question</label><input id="chat-input" placeholder="Type your question" autocomplete="off"><button class="btn btn-sm">Send</button></form>
     </section>`;
+
+  const wa = state.config.whatsappNumber;
+  if (wa) {
+    const text = encodeURIComponent(`Hello ${state.config.storeName}, I need help with...`);
+    wrap.insertAdjacentHTML('beforeend', `<a class="btn wa-fab" href="https://wa.me/${esc(wa)}?text=${text}" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">WhatsApp</a>`);
+    $('#chat-log', wrap).insertAdjacentHTML('beforeend', `<div class="msg">Prefer a person? <a href="https://wa.me/${esc(wa)}?text=${text}" target="_blank" rel="noopener noreferrer">Chat with us on WhatsApp</a></div>`);
+  }
+
   document.body.append(wrap);
   const fab = $('.chat-fab');
   const panel = $('#chat');

@@ -60,6 +60,7 @@ export const env = {
   mailFrom: process.env.MAIL_FROM || 'ShopEase <no-reply@localhost>',
   supportEmail: process.env.SUPPORT_EMAIL || '',
   supportPhone: process.env.SUPPORT_PHONE || '',
+    whatsappNumber: (process.env.WHATSAPP_NUMBER || '').replace(/\D/g, ''),
 };
 
 if (!env.jwtSecret || env.jwtSecret.startsWith('change-me')) {

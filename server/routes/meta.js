@@ -17,6 +17,7 @@ router.get('/config', (_req, res) => {
     bankDetails: env.bankDetails,
     supportEmail: env.supportEmail,
     supportPhone: env.supportPhone,
+    whatsappNumber: env.whatsappNumber,
   });
 });
 
