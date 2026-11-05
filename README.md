@@ -1,28 +1,28 @@
-# ShopEase - full-stack e-commerce store
+# Mara - full-stack e-commerce store
 
 Node.js + Express + MySQL back end, plain HTML/CSS/JavaScript front end (ES modules, no build step).
 Built from your earlier cart project: the product data, delivery options, `cart.js` and `money.js` were reused and improved.
 
 ## What is included
 
-| Area | What you get |
-|---|---|
-| Storefront | Responsive layout, category menu, search, filters (category, price, brand, rating, stock, sale), sorting, pagination |
-| Catalog | Products with images, descriptions, prices, discounts, categories and sub-categories |
-| Cart | Add/remove, change quantity, live totals. Prices are always re-read from the database |
-| Accounts | Register, sign in/out, profile, change password, saved addresses, order history, wishlist |
-| Checkout | Address, delivery option, coupon, card, M-Pesa, PayPal, bank transfer |
-| Orders | Confirmation, status timeline, tracking number, history, customer cancel, email updates |
-| Support | Contact form, FAQ, rule-based chat helper |
-| Reviews | Ratings and reviews (one per customer per product), "verified purchase" badge |
-| Admin | Dashboard, sales report with CSV export, products and stock, categories, orders, customers, coupons, support inbox, newsletter |
-| Marketing | Coupons, wishlists, newsletter, "picked for you" and "customers also bought" |
-| Security | bcrypt passwords, httpOnly JWT cookie, Helmet headers + CSP, rate limiting, parameterised SQL, server-side pricing, upload checks, CSRF origin check |
+| Area       | What you get                                                                                                                                         |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Storefront | Responsive layout, category menu, search, filters (category, price, brand, rating, stock, sale), sorting, pagination                                 |
+| Catalog    | Products with images, descriptions, prices, discounts, categories and sub-categories                                                                 |
+| Cart       | Add/remove, change quantity, live totals. Prices are always re-read from the database                                                                |
+| Accounts   | Register, sign in/out, profile, change password, saved addresses, order history, wishlist                                                            |
+| Checkout   | Address, delivery option, coupon, card, M-Pesa, PayPal, bank transfer                                                                                |
+| Orders     | Confirmation, status timeline, tracking number, history, customer cancel, email updates                                                              |
+| Support    | Contact form, FAQ, rule-based chat helper                                                                                                            |
+| Reviews    | Ratings and reviews (one per customer per product), "verified purchase" badge                                                                        |
+| Admin      | Dashboard, sales report with CSV export, products and stock, categories, orders, customers, coupons, support inbox, newsletter                       |
+| Marketing  | Coupons, wishlists, newsletter, "picked for you" and "customers also bought"                                                                         |
+| Security   | bcrypt passwords, httpOnly JWT cookie, Helmet headers + CSP, rate limiting, parameterised SQL, server-side pricing, upload checks, CSRF origin check |
 
 ## 1. Folder layout in VS Code
 
 ```
-shopease/
+Mara/
 ├── .vscode/                  VS Code settings, recommended extensions, debug config
 ├── database/
 │   ├── schema.sql            all tables
@@ -45,7 +45,7 @@ shopease/
 └── package.json
 ```
 
-Open the **shopease** folder in VS Code (File > Open Folder), accept the extension recommendations, and use the integrated terminal (Ctrl+`).
+Open the **Mara** folder in VS Code (File > Open Folder), accept the extension recommendations, and use the integrated terminal (Ctrl+`).
 
 ## 2. Requirements
 
@@ -58,7 +58,7 @@ Option A - automatic (recommended):
 
 1. Make sure MySQL is running and you know the user and password.
 2. Copy `.env.example` to `.env` and set `DB_USER` and `DB_PASSWORD`.
-3. Run `npm run db:setup`. It creates the `shopease` database, all tables and the sample data. It is safe to run again; `npm run db:reset` drops and rebuilds everything.
+3. Run `npm run db:setup`. It creates the `Mara` database, all tables and the sample data. It is safe to run again; `npm run db:reset` drops and rebuilds everything.
 
 Option B - manual (MySQL Workbench or the command line):
 
@@ -98,12 +98,12 @@ The sample products point at `images/products/...` (the same file names as your 
 
 `PAYMENT_MODE=live` switches to real providers. **These integrations are written to each provider's documented API but could not be tested against their servers while building, so test each one in its sandbox first.**
 
-| Method | Live behaviour | What you need |
-|---|---|---|
-| Card | Redirects to Stripe Checkout (hosted page, card data never touches your server). A webhook marks the order paid | `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`; webhook URL `APP_URL/api/payments/stripe/webhook` for `checkout.session.completed` |
-| M-Pesa | STK Push prompt on the customer's phone; Safaricom calls back to confirm | Daraja app keys, shortcode, passkey; `APP_URL` must be a public HTTPS address (use ngrok while developing) |
-| PayPal | Redirects to PayPal, captures on return | Client ID and secret. PayPal does not support every currency: set `PAYPAL_CURRENCY` and `PAYPAL_RATE` |
-| Bank transfer | Shows `BANK_DETAILS`, admin confirms manually | Nothing |
+| Method        | Live behaviour                                                                                                  | What you need                                                                                                                    |
+| ------------- | --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Card          | Redirects to Stripe Checkout (hosted page, card data never touches your server). A webhook marks the order paid | `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`; webhook URL `APP_URL/api/payments/stripe/webhook` for `checkout.session.completed` |
+| M-Pesa        | STK Push prompt on the customer's phone; Safaricom calls back to confirm                                        | Daraja app keys, shortcode, passkey; `APP_URL` must be a public HTTPS address (use ngrok while developing)                       |
+| PayPal        | Redirects to PayPal, captures on return                                                                         | Client ID and secret. PayPal does not support every currency: set `PAYPAL_CURRENCY` and `PAYPAL_RATE`                            |
+| Bank transfer | Shows `BANK_DETAILS`, admin confirms manually                                                                   | Nothing                                                                                                                          |
 
 Use `PAYMENT_METHODS` in `.env` to show only the methods you offer.
 

@@ -1,6 +1,6 @@
 // Browser cart, adapted from the original cart.js.
 // It only stores { productId, quantity }. Prices are ALWAYS re-read from the server, so the browser cannot change them.
-const KEY = 'shopease_cart';
+const KEY = 'Mara_cart';
 const MAX_QTY = 99;
 
 function load() {
